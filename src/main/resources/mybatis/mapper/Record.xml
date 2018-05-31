@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hc.mapper.Record" >
+    <resultMap id="baseResultMap" type="HashMap">
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <id column="recordno" property="recordno" jdbcType="VARCHAR" />
+        <id column="domain" property="domain" jdbcType="VARCHAR" />
+        <id column="ips" property="ips" jdbcType="VARCHAR" />
+        <id column="addtime" property="addtime" jdbcType="VARCHAR" />
+        <id column="adduser" property="adduser" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <sql id="baseColumn" >
+        id,recordno,domain,ips,addtime,adduser
+    </sql>
+
+    <select id="all"   resultMap="baseResultMap">
+        select <include refid="baseColumn" /> from rck_record_info
+    </select>
+
+</mapper>

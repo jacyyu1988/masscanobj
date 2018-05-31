@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hc.mapper.RckTaskDetail" >
+
+    <insert id="insert" parameterType="com.hc.entity.RckTaskDetailEntity">
+
+        insert into rck_task_detail(id,cid,task_id,hosts,ports,check_type,
+           inputfile,outputfile,endtime,savetype,
+           savedist,dataurl,note,status,isrecord,
+           total,up,down,recordnum,opennum)
+        values(uuid(),#{cid},#{taskId},#{hosts},#{ports},#{checkType},
+           #{inputfile},#{outputfile},sysdate(),'file',
+           #{savedist},#{dataurl},'',#{status},#{isrecord},
+           #{total},#{up},#{down},#{recordnum},#{opennum})
+
+    </insert>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache >
+    <diskStore path="java.io.tmpdir" />
+
+    <!-- Cluster localhost setting -->
+    <cacheManagerPeerProviderFactory
+            class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+            properties="peerDiscovery=automatic, multicastGroupAddress=230.0.0.1,
+	    hostName=localhost,
+    	multicastGroupPort=4446, timeToLive=32"/>
+    <cacheManagerPeerListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
+            properties="hostName=localhost, port=40001,socketTimeoutMillis=2000" />
+
+    <!-- 备案信息缓存 -->
+    <cache name="recordCache" maxElementsInMemory="500" overflowToDisk="true"
+           eternal="true">
+        <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+                properties="replicatePuts=false,replicateUpdatesViaCopy=false" />
+    </cache>
+
+
+</ehcache>

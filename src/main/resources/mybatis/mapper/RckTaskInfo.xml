@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hc.mapper.RckTaskInfo" >
+
+
+    <resultMap id="baseMap" type="com.hc.entity.RckTaskInfoEntity">
+
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <id column="task_id" property="taskId" jdbcType="VARCHAR" />
+        <id column="input_type" property="inputType" jdbcType="VARCHAR" />
+        <id column="output_type" property="outputType" jdbcType="VARCHAR" />
+        <id column="hosts" property="hosts" jdbcType="VARCHAR" />
+        <id column="ports" property="ports" jdbcType="VARCHAR" />
+        <id column="inputfile" property="inputfile" jdbcType="VARCHAR" />
+        <id column="outputfile" property="outputfile" jdbcType="VARCHAR" />
+        <id column="check_type" property="checkType" jdbcType="VARCHAR" />
+        <id column="isckrecord" property="isckrecord" jdbcType="VARCHAR" />
+        <id column="command" property="command" jdbcType="VARCHAR" />
+        <id column="checkuserid" property="checkuserid" jdbcType="VARCHAR" />
+        <id column="addtime" property="addtime" jdbcType="VARCHAR" />
+        <id column="status" property="status" jdbcType="VARCHAR" />
+
+        <id column="status" property="status" jdbcType="VARCHAR" />
+        <id column="overtime" property="overtime" jdbcType="VARCHAR" />
+        <id column="isping" property="isping" jdbcType="VARCHAR" />
+        <id column="ctimestr" property="ctimestr" jdbcType="VARCHAR" />
+
+        <id column="outtime" property="outtime" jdbcType="VARCHAR" />
+        <id column="hostgroup" property="hostgroup" jdbcType="VARCHAR" />
+        <id column="errormsg" property="errormsg" jdbcType="VARCHAR" />
+        <id column="recorddatatype" property="recorddatatype" jdbcType="VARCHAR" />
+
+        <id column="recorddatano" property="recorddatano" jdbcType="VARCHAR" />
+        <id column="errorcode" property="errorcode" jdbcType="VARCHAR" />
+        <id column="sendEmail" property="sendEmail" jdbcType="VARCHAR" />
+        <id column="email" property="email" jdbcType="VARCHAR" />
+
+        <id column="isDs" property="isDs" jdbcType="VARCHAR" />
+        <id column="rtable" property="rtable" jdbcType="VARCHAR" />
+
+    </resultMap>
+
+
+    <sql id="baseColumn" >
+        id,task_id,input_type,output_type,hosts ,
+        ports,inputfile,outputfile,check_type,isckrecord,command,checkuserid,
+        addtime,status,overtime,isping,ctimestr,outtime,hostgroup,errormsg,recorddatatype,
+        recorddatano,errorcode,sendEmail,email,isDs,rtable
+    </sql>
+
+    <select id="one"  parameterType="java.lang.String"  resultMap="baseMap">
+        select <include refid="baseColumn" /> from rck_task_info
+         where task_id=#{taskId}
+    </select>
+
+    <update  id="update" parameterType="com.hc.entity.RckTaskInfoEntity">
+        update rck_task_info
+          set task_id=task_id
+        <if test="outputType != null">,output_type=#{outputType}</if>
+        <if test="errorcode != null">,errorcode=#{errorcode}</if>
+        <if test="errormsg != null">,errormsg=#{errormsg}</if>
+        <if test="overtime != null">,overtime=#{overtime}</if>
+        <if test="status != null">,status=#{status}</if>
+        where task_id=#{taskId}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hc.mapper.User" >
+    <resultMap id="baseResultMap" type="HashMap">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <id column="age" property="age" jdbcType="BIGINT" />
+        <id column="email" property="email" jdbcType="VARCHAR" />
+        <id column="nick_name" property="nickName" jdbcType="VARCHAR" />
+        <id column="password" property="password" jdbcType="VARCHAR" />
+        <id column="reg_time" property="regTime" jdbcType="VARCHAR" />
+        <id column="user_name" property="userName" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <sql id="baseColumn" >
+        id,age,email,nick_name,password,reg_time,user_name
+    </sql>
+
+    <select id="all"   resultMap="baseResultMap">
+        select <include refid="baseColumn" /> from user_entity
+    </select>
+
+    <select id="one"  parameterType="Long" resultMap="baseResultMap">
+        select <include refid="baseColumn" /> from user_entity  where id=#{id}
+    </select>
+</mapper>
+
